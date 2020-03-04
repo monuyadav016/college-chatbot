@@ -1,0 +1,6 @@
+logs
+*.log
+
+college-bot-9a2ca19f825b.json
+.vscode/
+node_modules/
