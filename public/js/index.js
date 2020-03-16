@@ -56,7 +56,7 @@ function serverMessage(response2) {
     $('.message.loading').remove();
     $('<div class="message new"><figure class="avatar"><img src="css/bot.png" /></figure>' + response2 + '</div>').appendTo($('.mCSB_container')).addClass('new');
     updateScrollbar();
-  }, 100 + (Math.random() * 20) * 100);
+  }, 100 + (Math.random() * 20) * 50);
 
 }
 

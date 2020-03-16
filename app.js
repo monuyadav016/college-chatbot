@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
     req.session.uuid = uuid.v4();
   }
   // console.log("Session ID : " + req.session.uuid);
-  res.sendFile(path.join(__dirname+'/public/index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 })
 
 app.post('/send-msg', (req, res) => {
@@ -51,7 +51,7 @@ app.post('/send-msg', (req, res) => {
 async function runDialog(message, sessionId, projectId = 'college-bot-82081') {
   // Create a new session
   const sessionClient = new dialogflow.SessionsClient({
-    keyFilename : "/home/monu/Desktop/Projects/Chatbot/college-bot-9a2ca19f825b.json"
+    keyFilename : path.join(__dirname, 'college-bot-9a2ca19f825b.json')
   });
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
@@ -86,6 +86,6 @@ async function runDialog(message, sessionId, projectId = 'college-bot-82081') {
 // Using it above GET request to "/" does not execute the connected function only serves the index.html file
 app.use(express.static(__dirname + '/public'));
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log('Running on port '+port);
 })
