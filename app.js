@@ -32,8 +32,13 @@ app.get('/', (req, res) => {
   } else {
     req.session.uuid = uuid.v4();
   }
-  // console.log("Session ID : " + req.session.uuid);
+  console.log("Session ID : " + req.session.uuid);
   res.sendFile(path.join(__dirname, 'public/index.html'));
+})
+
+app.get('/session', (req, res) => {
+  console.log("Session ID : " + req.session.uuid);
+  res.send("session uuid is : "+req.session.uuid);
 })
 
 app.post('/send-msg', (req, res) => {
