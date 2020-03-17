@@ -53,10 +53,10 @@ app.post('/send-msg', (req, res) => {
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
  */
-async function runDialog(message, sessionId, projectId = 'college-bot-82081') {
+async function runDialog(message, sessionId, projectId = process.env.PROJECT_ID) {
   // Create a new session
   const sessionClient = new dialogflow.SessionsClient({
-    keyFilename : path.join(__dirname, 'college-bot-9a2ca19f825b.json')
+    keyFilename : path.join(__dirname, process.env.KEY_FILE)
   });
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 

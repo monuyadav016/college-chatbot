@@ -1,5 +1,6 @@
 let $messages = $('.messages-content');
 let serverResponse = "NONE";
+const url = 'http://localhost:5000/send-msg';
 
 let recognition;
 // speech recognition
@@ -83,8 +84,6 @@ function serverMessage(response2) {
 
 
 function fetchmsg(){
-
-      let url = 'http://vjit-chatbot.herokuapp.com/send-msg';
       const data = new URLSearchParams();
       for (const pair of new FormData(document.getElementById("message-form"))) {
           data.append(pair[0], pair[1]);
