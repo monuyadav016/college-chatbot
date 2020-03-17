@@ -1,6 +1,27 @@
 let $messages = $('.messages-content');
 let serverResponse = "NONE";
 
+let recognition;
+// speech recognition
+try {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+}
+catch(e) {
+  console.error(e);
+  $('.no-browser-support').show();
+}
+
+$('#start-record-btn').on('click', function(e) {
+  recognition.start();
+});
+
+recognition.onresult = (event) => {
+  const speechToText = event.results[0][0].transcript;
+  document.getElementById("message").value= speechToText;
+  // console.log(speechToText)
+  insertMessage()
+}
 
 function listendom(no){
   console.log(no)
@@ -63,7 +84,7 @@ function serverMessage(response2) {
 
 function fetchmsg(){
 
-      let url = 'http://localhost:5000/send-msg';
+      let url = 'http://vjit-chatbot.herokuapp.com//send-msg';
       const data = new URLSearchParams();
       for (const pair of new FormData(document.getElementById("message-form"))) {
           data.append(pair[0], pair[1]);
@@ -76,9 +97,12 @@ function fetchmsg(){
         .then(response => {
         // console.log(response);
         serverMessage(response.reply);
-        //speechSynthesis.speak( new SpeechSynthesisUtterance(response.Reply))
-      
-        
+        let speech = new SpeechSynthesisUtterance();
+        speech.text = response.reply;
+        speech.volume = 1;
+        speech.rate = 0.9;
+        speech.pitch = 1;
+        window.speechSynthesis.speak(speech);
         })
         .catch((error) => {console.error('Error :', error)});
 

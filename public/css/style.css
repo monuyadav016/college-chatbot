@@ -280,8 +280,8 @@ Message Box
   color: transparent;
 }
 .message-box .message-submit {
-  /* position: absolute; */
-  margin-left: 75px;
+  position: absolute;
+  /* margin-left: 75px; */
   z-index: 1;
   top: 9px;
   right: 10px;

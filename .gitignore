@@ -2,6 +2,7 @@ logs
 *.log
 
 college-bot-9a2ca19f825b.json
+# .env
 .vscode/
 node_modules/
 functions/node_modules/
