@@ -14,6 +14,7 @@ catch(e) {
 }
 
 $('#start-record-btn').on('click', function(e) {
+  window.speechSynthesis.cancel();
   recognition.start();
 });
 
@@ -27,7 +28,7 @@ recognition.onresult = (event) => {
 function listendom(no){
   console.log(no)
   //console.log(document.getElementById(no))
-document.getElementById("message").value= no.innerHTML;
+  document.getElementById("message").value= no.innerHTML;
   insertMessage();
 }
 
@@ -58,7 +59,7 @@ function insertMessage() {
   
   $('.message-input').val(null);
   updateScrollbar();
-
+  window.speechSynthesis.cancel();
 }
 
 document.getElementById("message-form").onsubmit = (e)=>{
